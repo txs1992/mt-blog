@@ -1,3 +1,3 @@
-# vuepress-blog
+# mt-blog
 
-## 基于 vuepress 搭建的静态博客 https://taoxusheng.github.io/mt-blog/
+> 基于 vuepress 搭建的静态博客 [mt-blog](https://taoxusheng.github.io/mt-blog/)

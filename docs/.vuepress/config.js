@@ -19,7 +19,8 @@ module.exports = {
     ],
     sidebar: {
       '/blog/': [
-        '',
+        'git',
+        'vue-amap'
       ],
       '/zhihu/': [
         ''
