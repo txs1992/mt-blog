@@ -8,7 +8,8 @@
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "deploy": "npm run docs:build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/TaoXuSheng/vuepress-blog#readme",
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "vuepress": "^0.8.4"
   }
 }

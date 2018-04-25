@@ -1,4 +1,5 @@
 module.exports = {
+  dest: './dist',
   title: 'Hello MT-BLOG',
   description: '12345，上山打老虎。',
   themeConfig: {
