@@ -1,0 +1,22 @@
+{
+  "name": "vuepress-blog",
+  "version": "1.0.0",
+  "description": "Static blog based on vuepress.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaoXuSheng/vuepress-blog.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TaoXuSheng/vuepress-blog/issues"
+  },
+  "homepage": "https://github.com/TaoXuSheng/vuepress-blog#readme"
+}
