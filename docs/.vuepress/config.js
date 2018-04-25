@@ -23,7 +23,7 @@ module.exports = {
         'vue-amap'
       ],
       '/zhihu/': [
-        ''
+        'vue-business-component'
       ]
     }
   }
