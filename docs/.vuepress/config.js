@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/vuepress-blog/',
   title: 'Hello MT-BLOG',
   description: '12345，上山打老虎。',
   themeConfig: {
