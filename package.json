@@ -7,9 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "deploy": "npm run docs:build && gh-pages -d dist"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",

@@ -1,9 +1,10 @@
 module.exports = {
+  base: '/mt-blog',
   dest: './dist',
   title: 'Hello MT-BLOG',
   description: '12345，上山打老虎。',
   themeConfig: {
-    repo: 'TaoXuSheng/vuepress-blog',
+    repo: 'TaoXuSheng/mt-blog',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Blog', link: '/blog/' },
