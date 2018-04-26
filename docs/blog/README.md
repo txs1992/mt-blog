@@ -67,15 +67,6 @@ export default {
     @change="handleChange">
   </el-cascader>
 </div>
-<div class="block">
-  <span class="demonstration">hover 触发子菜单</span>
-  <el-cascader
-    expand-trigger="hover"
-    :options="options"
-    v-model="selectedOptions2"
-    @change="handleChange">
-  </el-cascader>
-</div>
 
 <script>
   export default {
