@@ -60,7 +60,6 @@ export default {
 ### cascader
 
 <div class="block">
-  <span class="demonstration">默认 click 触发子菜单</span>
   <el-cascader
     :options="options"
     v-model="selectedOptions"
