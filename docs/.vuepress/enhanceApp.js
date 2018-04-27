@@ -7,6 +7,5 @@ export default ({
   options,
   router
 }) => {
-  console.log('ss')
   Vue.use(Element)
 }
