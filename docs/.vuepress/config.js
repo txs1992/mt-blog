@@ -20,7 +20,8 @@ module.exports = {
     sidebar: {
       '/blog/': [
         'git',
-        'vue-amap'
+        'vue-amap',
+        'js-function'
       ],
       '/zhihu/': [
         'vuepress',
