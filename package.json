@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TaoXuSheng/vuepress-blog.git"
+    "url": "git+https://github.com/TaoXuSheng/mt-blog.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TaoXuSheng/vuepress-blog/issues"
+    "url": "https://github.com/TaoXuSheng/mt-blog/issues"
   },
-  "homepage": "https://github.com/TaoXuSheng/vuepress-blog#readme",
+  "homepage": "https://github.com/TaoXuSheng/mt-blog#readme",
   "devDependencies": {
     "gh-pages": "^1.1.0",
     "vuepress": "^0.8.4"
