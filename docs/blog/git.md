@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 # git 命令行
 
 ![git](https://cloud.githubusercontent.com/assets/17583395/23828785/ddc1ef96-0717-11e7-8d47-26c0556dbdb5.jpeg)
