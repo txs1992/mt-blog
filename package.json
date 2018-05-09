@@ -23,6 +23,8 @@
   "homepage": "https://github.com/TaoXuSheng/mt-blog#readme",
   "devDependencies": {
     "gh-pages": "^1.1.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
     "vuepress": "^0.8.4"
   },
   "dependencies": {
