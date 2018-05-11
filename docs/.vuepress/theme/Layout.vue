@@ -1,6 +1,6 @@
 <template>
   <div class="page-main">
-    <nav-menu v-if="$route.path !== '/'"></nav-menu>
+    <nav-menu></nav-menu>
     <div class="page-container">
       <page></page>
     </div>
@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss">
 @import './styles/base.scss';
+@import './styles/theme.scss';
 
 .page-main {
   display: flex;
@@ -34,6 +35,7 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: row;
+    background: #f6f6f6;
 
     > aside {
       flex: 1;

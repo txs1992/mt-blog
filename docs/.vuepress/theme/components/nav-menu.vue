@@ -8,6 +8,7 @@
         value-key="title"
         placeholder="请输入内容"
         prefix-icon="el-icon-search"
+        background-color="#eee"
         :fetch-suggestions="querySearchTips"
         @select="handleSearchValue">
       </el-autocomplete>
