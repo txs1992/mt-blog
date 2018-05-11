@@ -22,8 +22,8 @@
 <script>
 export default {
   computed: {
-    front ({ $page: { frontmatter } }) {
-      return frontmatter
+    front () {
+      return this.$page.frontmatter
     },
 
     nav ({ front }) {
