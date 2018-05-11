@@ -1,0 +1,22 @@
+html, body, #app {
+  margin: 0;
+  height: 100%;
+  background-color: #fff;
+  min-width: 1000px;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+[class *= 'language-'] {
+  border-radius: 10px;
+}
+
+.header-anchor {
+  opacity: 0;
+}
+
+pre {
+  border-radius: 5px;
+  background: #000;
+  padding: 15px;
+  color: #fff;
+}
