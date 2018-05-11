@@ -57,7 +57,7 @@ export default {
     },
 
     pages () {
-      return $site.pages || []
+      return this.$site.pages || []
     }
   },
 
