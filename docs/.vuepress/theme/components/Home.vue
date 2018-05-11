@@ -1,7 +1,21 @@
 <template>
   <div class="component-home">
-    Home
-    {{ title }}
+    <div class="center">
+      <img class="hero" src="../images/hero.jpeg"></img>
+      <div class="title">{{ front.title }}</div>
+      <div class="description">
+        {{ front.description }}
+      </div>
+      <div class="button-wrapper">
+        <el-button
+          v-for="item in nav"
+          round
+          :key="item.text"
+          @click="handlerClick(item)">
+          {{ item.text }}
+        </el-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -12,8 +26,18 @@ export default {
       return frontmatter
     },
 
-    title ({ front }) {
-      return front.title
+    nav ({ front }) {
+      return front.nav || []
+    }
+  },
+
+  methods: {
+    handlerClick ({ link = '' }) {
+      if (/^http/.test(link)) {
+        window.open(link)
+      } else {
+        this.$router.push(link)
+      }
     }
   }
 }
@@ -21,10 +45,39 @@ export default {
 
 <style lang="scss">
 .component-home {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  // background-color: #ccc;
-  background-size: 50%;
-  background-image: url(../images/bg.jpeg);
+  color: #909399;
+
+  .center {
+    height: 50%;
+    text-align: center;
+
+    .hero {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      border: 4px solid #f2f6fc;
+    }
+
+    .title {
+      padding: 6px 0;
+      font-size: 32px;
+      color: #606266;
+    }
+
+    .description {
+      margin-bottom: 10px;
+      padding: 4px 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .button-wrapper {
+      display: flex;
+      flex-direction: row;
+    }
+  }
 }
 </style>
