@@ -9,13 +9,11 @@
 
 <script>
 import Page from './components/page.vue'
-import Sidebar from './components/sidebar.vue'
 import NavMenu from './components/nav-menu.vue'
 
 export default {
   components: {
     Page,
-    Sidebar,
     NavMenu
   }
 }

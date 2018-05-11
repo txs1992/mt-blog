@@ -26,8 +26,8 @@ export default {
       return this.$page.frontmatter
     },
 
-    nav ({ front }) {
-      return front.nav || []
+    nav () {
+      return this.front.nav || []
     }
   },
 

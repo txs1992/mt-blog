@@ -56,8 +56,8 @@ export default {
       return this.$site.themeConfig.nav
     },
 
-    pages ({ $site: { pages } }) {
-      return pages
+    pages () {
+      return $site.pages
     }
   },
 
