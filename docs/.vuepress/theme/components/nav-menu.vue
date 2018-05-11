@@ -53,11 +53,11 @@ export default {
 
   computed: {
     menuList () {
-      return this.$site.themeConfig.nav
+      return this.$site.themeConfig.nav || []
     },
 
     pages () {
-      return $site.pages
+      return $site.pages || []
     }
   },
 
