@@ -21,7 +21,8 @@ module.exports = {
       '/blog/': [
         'git',
         'vue-amap',
-        'js-function'
+        'js-function',
+        'vuepress-theme'
       ],
       '/zhihu/': [
         'vuepress',

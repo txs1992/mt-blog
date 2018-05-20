@@ -10,4 +10,7 @@ items:
   - title: 在 Vue 中使用高德地图的一些问题
     description: 前段时间做了一个和地图相关的项目，项目中有多个地图页面，这些地图页面有一个侧边栏，一个筛选组件，根据筛选组件的条件请求数据，然后在地图上放覆盖物。在实际开发中遇到了一些问题做了一些总结。
     link: vue-amap
+  - title: VuePress 主题踩坑
+    description: 这两天刚好有时间，感觉 VuePress 的主题不是很适合博客系统，就看着改了一波，踩了点小坑。
+    link: vuepress-theme
 ---
