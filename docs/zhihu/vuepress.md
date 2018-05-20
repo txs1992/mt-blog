@@ -157,8 +157,6 @@ export default ({
 </template>
 ```
 
-<hello>
-</hello>
 
 这样我们在 Markdown 文件编写 Vue 代码的时候就不需要注册注册这些组件，边可以直接在 Markdown 中使用了。
 

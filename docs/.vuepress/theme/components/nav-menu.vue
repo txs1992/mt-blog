@@ -62,7 +62,7 @@ export default {
     },
 
     defaultPath () {
-      return this.$route.path
+      return this.$route.path.replace(/\/(\w+-*\w+)\.html$/, '/')
     }
   },
 
