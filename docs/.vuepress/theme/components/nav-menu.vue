@@ -16,6 +16,7 @@
     <!-- 导航栏 -->
     <el-menu
       mode="horizontal"
+      :default-active="defaultPath"
       @select="handleSelect">
       <template v-for="menu in menuList">
         <el-submenu
@@ -58,6 +59,10 @@ export default {
 
     pages () {
       return this.$site.pages || []
+    },
+
+    defaultPath () {
+      return this.$route.path
     }
   },
 
