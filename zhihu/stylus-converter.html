@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hello MT-BLOG | 从零开始写个 Stylus 转换器</title>
+    <meta name="description" content="12345，上山打老虎。">
+    
+    
+    <link rel="preload" href="/mt-blog/assets/css/12.styles.2e3c9ea2.css" as="style"><link rel="preload" href="/mt-blog/assets/js/app.b4277fc3.js" as="script"><link rel="preload" href="/mt-blog/assets/js/2.c4b588a3.js" as="script"><link rel="prefetch" href="/mt-blog/assets/js/6.802c089e.js"><link rel="prefetch" href="/mt-blog/assets/js/0.4ef5c6ef.js"><link rel="prefetch" href="/mt-blog/assets/js/1.5d8f4f72.js"><link rel="prefetch" href="/mt-blog/assets/js/3.0a7e49ae.js"><link rel="prefetch" href="/mt-blog/assets/js/4.032c796c.js"><link rel="prefetch" href="/mt-blog/assets/js/5.7976720c.js"><link rel="prefetch" href="/mt-blog/assets/js/7.0ea3e85a.js"><link rel="prefetch" href="/mt-blog/assets/js/8.469fc7f8.js"><link rel="prefetch" href="/mt-blog/assets/js/9.ffbcef4b.js"><link rel="prefetch" href="/mt-blog/assets/js/10.12bd9894.js"><link rel="prefetch" href="/mt-blog/assets/js/11.545200fa.js">
+    <link rel="stylesheet" href="/mt-blog/assets/css/12.styles.2e3c9ea2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="page-main"><div class="component-nav-menu"><div class="placeholder"></div><div class="search-wrapper"><div aria-haspopup="listbox" role="combobox" aria-owns="el-autocomplete-3280" background-color="#eee" class="el-autocomplete"><div class="el-input el-input--prefix"><!----><input type="text" autocomplete="off" valueKey="title" placeholder="请输入内容" fetchSuggestions="function () { [native code] }" triggerOnFocus="true" debounce="300" placement="bottom-start" value="" class="el-input__inner"><span class="el-input__prefix"><i class="el-input__icon el-icon-search"></i></span><!----><!----></div><div role="region" class="el-autocomplete-suggestion el-popper" style="width:;display:none;"><div class="el-scrollbar"><div class="el-autocomplete-suggestion__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"><ul class="el-scrollbar__view el-autocomplete-suggestion__list"></ul></div><div class="el-scrollbar__bar is-horizontal"><div class="el-scrollbar__thumb" style="width:0;transform:translateX(0%);ms-transform:translateX(0%);webkit-transform:translateX(0%);"></div></div><div class="el-scrollbar__bar is-vertical"><div class="el-scrollbar__thumb" style="height:0;transform:translateY(0%);ms-transform:translateY(0%);webkit-transform:translateY(0%);"></div></div></div></div></div></div><ul role="menubar" class="el-menu--horizontal el-menu" style="background-color:;"><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;border-bottom-color:transparent;background-color:;">
+        Home
+      </li><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;border-bottom-color:transparent;background-color:;">
+        Blog
+      </li><li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="color:;border-bottom-color:;background-color:;">
+        知乎
+      </li><li role="menuitem" aria-haspopup="true" class="el-submenu"><div class="el-submenu__title" style="border-bottom-color:transparent;color:;background-color:;">
+          我的项目
+        <i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><div class="el-menu--horizontal" style="display:none;"><ul role="menu" class="el-menu el-menu--popup el-menu--popup-" style="background-color:;"><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;background-color:;">
+          focus-outside
+        </li><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;background-color:;">
+          stylus-converter
+        </li></ul></div></li></ul></div><div class="page-container"><div class="component-page"><div class="page-content"><div class="component-item-list"></div><div class="content custom"><h1 id="从零开始写个-stylus-转换器"><a href="#从零开始写个-stylus-转换器" aria-hidden="true" class="header-anchor">#</a> 从零开始写个 Stylus 转换器</h1><h2 id="背景"><a href="#背景" aria-hidden="true" class="header-anchor">#</a> 背景</h2><blockquote><p>刚进公司的时候还没有学过什么预编译 CSS，在网上查了一下感觉 Stylus 代码简洁，功能强大，所以在第一个项目中就用了 Stylus。随着时间的推移，后面的项目渐渐的改用了团队成员使用较多的 SCSS，前段时间需要维护那个老项目，用习惯了 SCSS 之后对 Stylus 的缩进语法有些别扭。</p></blockquote><blockquote><p>由于我所在的团队都是使用 SCSS 进行开发，如果别人去维护这个项目，估计还需要点时间去适应 Stylus，从团队角度来说不易于维护。于是就准备将这个项目替换成 SCSS，但是如果手动去转换 Stylus 浪费时间，出错率比较大，而且这种工作只是一次性的。</p></blockquote><blockquote><p>在 Google 和 Github 上面找了一圈，发现有 SCSS 和 Less 的转换工具，但就是没有 Stylus 的转换工具。当时心里在想：要不我自己去写这个工具吧？感觉这个好像很难啊，我能做出来吗？不管了先试试吧。于是 <strong><a href="https://github.com/txs1992/stylus-converter" target="_blank" rel="noopener noreferrer">stylus-converter<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong> 这个项目就这样诞生了，只需要执行一条命令就可以将 stylus 转换成 SCSS。目前工具已完成 Stylus 到 SCSS 的转换，下一步会添加 Stylus 到 Less 的转换。</p></blockquote><h2 id="使用示例"><a href="#使用示例" aria-hidden="true" class="header-anchor">#</a> 使用示例</h2><blockquote><p>你说了那么多，但是我需要知道你这个工具是否好用，你得拿出实锤让我们看看，如果工具不好用，我才不要浪费时间去学习。好吧，既然各位已经提出意见了，那就满足各位的要求。不知道各位知不知道前两年有个非常火的仿饿了么 APP 的项目，我曾在网上看过这个项目的代码，其中就用到了 Stylus，那我们就用 vue-sell 来试验一波（已经经过 ustbhuangyi 同意），废话不多说直接开干。</p></blockquote><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 先下载 stylus-converter</span>
+npm install <span class="token operator">-</span>g stylus<span class="token operator">-</span>converter
+
+<span class="token comment">// clone vue-sell 项目</span>
+git clone git@github<span class="token punctuation">.</span>com<span class="token punctuation">:</span>ustbhuangyi<span class="token operator">/</span>vue<span class="token operator">-</span>sell<span class="token punctuation">.</span>git
+
+<span class="token comment">// 进入 vue-sell 项目目录</span>
+cd vue<span class="token operator">-</span>sell
+
+<span class="token comment">// 下载项目依赖</span>
+npm install
+
+<span class="token comment">// 修改文件夹</span>
+mv src src<span class="token operator">-</span>temp
+
+<span class="token comment">// 将目录中的所有 stylus 转换为 scss</span>
+stylus<span class="token operator">-</span>conver <span class="token operator">-</span>d yes <span class="token operator">-</span>i src<span class="token operator">-</span>temp <span class="token operator">-</span>o src
+
+<span class="token comment">// 进入 src 目录，打开 main.js 文件</span>
+<span class="token comment">// 将 import 'common/stylus/index.styl';</span>
+<span class="token comment">// 改为 import 'common/stylus/index.scss';</span>
+
+<span class="token comment">// 下载 loader</span>
+npm instll <span class="token operator">-</span>d node<span class="token operator">-</span>sass sass<span class="token operator">-</span>loader
+
+<span class="token comment">// 嗯！项目已经转换完成，让我们运行一下吧</span>
+npm run dev
+</code></pre></div><p>经过上面几个步骤，vue-sell 中的 Stylus 源码已经被转换完成了 SCSS，其中转换的工作只用到 stylus-converter 的只有一条简单的命令而已。</p><h2 id="如何转换-stylus-源码"><a href="#如何转换-stylus-源码" aria-hidden="true" class="header-anchor">#</a> 如何转换 Stylus 源码</h2><blockquote><p>看完示例我们已经知道如何去使用这个工具了，但既然标题是<strong>从零开始写个 Stylus 转换器</strong>，那我们就来说说如何去实现这个工具，首先我们要解决的问题就是如何去转换 Stylus 的源码。</p></blockquote><h3 id="使用正则来转换代码"><a href="#使用正则来转换代码" aria-hidden="true" class="header-anchor">#</a> 使用正则来转换代码</h3><p>最开始的时候想到的是用正则将 Stylus 转换成 SCSS，当时觉得这个工作应该很简单，将 Stylus 转换成 SCSS 只需要给代码尾部加上分号和大括号就可以了。然后花了两天业余时间也没写出 demo，因为后来发现不仅仅只是在尾部价格分号以及大括号这么简单，它们有很多语法是不一样的。例如 Stylus 在定义以及调用 Mixin 和 Function 是一样的。而 SCSS 在定义 Mixin 以及调用 Mixin 的时候语法都是不一样的所以最终还是放弃了使用正则来处理这个任务，后面的篇幅会详细介绍转换中遇到的问题。</p><h3 id="postcss-与-ast"><a href="#postcss-与-ast" aria-hidden="true" class="header-anchor">#</a> PostCSS 与 AST</h3><p>在放弃正则之后就在想到底应该怎么去处理 Stylus 呢？一次在和同事的交流中，同事建议让我看看 AST 和 PostCSS。</p><p>首先我们先简单了解一下什么是 AST，AST 中文是抽象语法树，是源代码的一种抽象表示，它以树状结构表现源代码的语法结构，简单来说就是将源代码解析成我们可以处理的数据结构。</p><p>再来看看 PostCSS，PostCSS 就是提供了使用 JavaScript 代码处理 CSS 的工具，PostCSS 有两个主要的功能。</p><ol><li>将 CSS 源码转换成 CSS 抽象语法树 AST</li><li>调用插件来处理语法树并得到结果</li></ol><p>试用了一下发现 PostCSS 并不能将 Stylus 转换成 AST，因为无法解析 Stylus 语法。</p><h3 id="poststylus-与-stylus"><a href="#poststylus-与-stylus" aria-hidden="true" class="header-anchor">#</a> PostStylus 与 Stylus</h3><p>不过在查看 PostCSS 仓库的时候以外发现了一个 PostStylus 的插件，PostStylus 是一个处理 Stylus 的 PostCSS 适配器，PostStylus 可以拿到 Stylus 编译后的 CSS 源码，但是却无法获取 Stylus 的语法树。有些好奇 PostStylus 是如何获取到 CSS 源码，接下来让我们看看 PostStylus 以及 Stylus 的源码。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/* PostStylus 源码一部分 */</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>plugins<span class="token punctuation">,</span> warnFn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>style<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    style<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'end'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> css<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 调用 PostCSS 处理 CSS 源码，并调用相关插件。</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Stylus 仓库的 renderer.js 代码中的一部分 */</span>
+<span class="token keyword">function</span> <span class="token function">Renderer</span> <span class="token punctuation">(</span>str<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  options <span class="token operator">=</span> options <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  options<span class="token punctuation">.</span>use <span class="token operator">=</span> options<span class="token punctuation">.</span>use <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  options<span class="token punctuation">.</span>use <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>use<span class="token punctuation">)</span> <span class="token operator">?</span> options<span class="token punctuation">.</span>use <span class="token punctuation">:</span> <span class="token punctuation">[</span>options<span class="token punctuation">.</span>use<span class="token punctuation">]</span>
+  <span class="token comment">// 处理参数...</span>
+<span class="token punctuation">}</span>
+
+Renderer<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">render</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>fn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> parser <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Parser</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>str<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">)</span>
+
+  <span class="token comment">// use plugin(s)</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>use<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>use<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 将 stylus 源码解析成 ast。</span>
+    <span class="token keyword">var</span> ast <span class="token operator">=</span> parser<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// 对 stylus ast 做些处理 ...</span>
+
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 获取 end 事件的函数数组</span>
+  <span class="token keyword">var</span> listeners <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">listeners</span><span class="token punctuation">(</span><span class="token string">'end'</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>fn<span class="token punctuation">)</span> listeners<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len <span class="token operator">=</span> listeners<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> ret <span class="token operator">=</span> listeners<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> css<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret<span class="token punctuation">)</span> css <span class="token operator">=</span> ret<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fn<span class="token punctuation">)</span> <span class="token keyword">return</span> css
+<span class="token punctuation">}</span>
+
+Renderer<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">use</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>fn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  fn<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们来看看 PostStylus 是如何得到 CSS 的 AST 对象，经过了哪些步骤？</p><ol><li>我们在 webpack 或 glup 中调用 Stylus CLI，将 PostStylus 当做配置项的一个插件传入，并创建一个 Renderer 实例</li><li>执行 Renderer 实例的 <code>render</code> 函数，遍历 <code>options.use</code> 数组，并调用实例的 <code>use</code> 方法并传入 PostStylus 插件</li><li>以 Renderer 实例调用 PostStylus 插件方法，并将当前实例(<code>this</code>)作为参数传入</li><li>执行 PostStylus 返回的匿名函数，在 Renderer 实例中注册 <code>end</code> 事件</li><li>继续执行 <code>render</code> 函数代码，调用 Parser 实例并调用 <code>parse</code> 方法得到 Stylus AST 对象</li><li>处理 AST 对象，获取 <code>end</code> 事件的函数数组，遍历数组调用函数，传入已经处理完的 CSS 源码</li><li>执行 PostStylus 调用 PostCSS 转换 CSS 源码，并调用插件处理</li></ol><p>从上面的步骤中我们可看出 PostStylus 如果处理 Stylus，最重要的是我们知道了如何获取 Stylus 的 AST 对象，
+通过调用 Parser 实例的 parse() 方法能获取到 Stylus 的 AST 对象。既然我们已经可以得到 Stylus 的 AST 对象了，那么接下来就是如何处理 AST 了。</p><h2 id="处理-ast"><a href="#处理-ast" aria-hidden="true" class="header-anchor">#</a> 处理 AST</h2><p>关于 Stylus 转换成 AST 有哪些节点，可以在<a href="https://github.com/stylus/stylus/tree/dev/lib/nodes" target="_blank" rel="noopener noreferrer">nodes 文件夹<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>中查看，这里就不一一描述了，接下来说说在转换 AST 的时候遇到了哪些问题，以及如何去解决这些问题，在开始前，先给大家看看转换后的 AST 是怎么样的。</p><div class="language- extra-class"><pre class="language-text"><code>/* nodes/selector */
+Selector.prototype.toJSON = function () {
+  return {
+    __type: 'Selector',
+    inherits: this.inherits,
+    segments: this.segments,
+    optional: this.optional,
+    val: this.val,
+    lineno: this.lineno,
+    column: this.column,
+    filename: this.filename
+  }
+}
+
+/* nodes/block */
+Block.prototype.toJSON = function() {
+  return {
+    __type: 'Block',
+    scope: this.scope,
+    lineno: this.lineno,
+    column: this.column,
+    filename: this.filename,
+    nodes: this.nodes
+  }
+}
+</code></pre></div><p>上面一段代码是 Selector 节点对象和 Block 节点对象的 <code>toJSON</code> 方法，我们来看看两个节点对象相同的的属性有哪些。</p><ol><li><code>__type</code> 属性表示节点的类型，我们可以针对不同的类型调用不同的处理方法</li><li><code>lineno</code> 属性表示节点在源码中的行数，根据这个属性来判断是否需要换行</li><li><code>column</code> 属性表示节点在源码中的列数，前期我根据这个属性来处理缩进，后来发现根据 Block 节点处理缩进更方便</li></ol><h3 id="处理换行缩进与花括号"><a href="#处理换行缩进与花括号" aria-hidden="true" class="header-anchor">#</a> 处理换行缩进与花括号</h3><p>处理这些很简单，先从换行开始，每个节点中都有一个 lineno 属性，表示当前节点所在的行，我们只需要使用 oldLineno 变量去记录这个值就好了，oldLineno 默认值是1，每次将节点的 lineno - oldLineno 就能得到换行的数值。</p><p>处理缩进，Stylus 中 Block 节点表示代码块，首先我们用一个 <code>indentationLevel</code> 变量来表示缩进等级，这个变量默认值是 0，每次遇到 Block 节点的时候将这个变量加一，在处理完 Block 节点的时候讲这个变量减一。为什么要这么做，因为节点是可以嵌套的，一个 Block 节点中可能嵌套着无数个 Block 以及其他节点，然后按照自己喜欢将这个变量乘以 2 或 4，再填充空格就得到缩进了。</p><p>处理花括号和缩进一样，也是根据 Block 节点，我们只需要在这个节点的开头后结尾分别加上两个花括号就可以了。</p><h3 id="处理循环"><a href="#处理循环" aria-hidden="true" class="header-anchor">#</a> 处理循环</h3><p>先对比一下 Stylus 与 SCSS 的循环语法有什么不同之处</p><div class="language-scss extra-class"><pre class="language-scss"><code><span class="token comment">/* stylus */</span>
+div
+  for str in 1 2 3 4 5
+    bar str
+  for num in 1..5
+    foo num
+
+<span class="token comment">/* scss */</span>
+<span class="token selector">div </span><span class="token punctuation">{</span>
+  <span class="token keyword">@for</span> <span class="token variable">$num</span> <span class="token keyword">from</span> 1 <span class="token keyword">through</span> <span class="token selector">5 </span><span class="token punctuation">{</span>
+    <span class="token property">foo</span><span class="token punctuation">:</span> <span class="token variable">$num</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">@for</span> <span class="token variable">$index</span> <span class="token keyword">from</span> <span class="token selector">1 to 5 </span><span class="token punctuation">{</span>
+    <span class="token property">len</span><span class="token punctuation">:</span> <span class="token variable">$index</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">@each</span> <span class="token selector"><span class="token variable">$str</span> in 1, 2, 3, 4, 5 </span><span class="token punctuation">{</span>
+    <span class="token property">bar</span><span class="token punctuation">:</span> <span class="token variable">$str</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>从上面的代码我们可以看出 SCSS 循环的语法有三种，分别是：</p><ol><li><code>@for</code> &lt;变量名&gt; <code>from</code><start><code>through</code><end></end></start></li><li><code>@for</code> &lt;变量名&gt; <code>from</code><start><code>to</code><end></end></start></li><li><code>@each</code> &lt;变量名&gt; <code>in</code> &lt;表达式&gt;</li></ol><p>而 Stylus 的循环语法都是 <code>for</code> &lt;变量名&gt; <code>in</code> &lt;表达式&gt;，那么怎么将 Stylus 转换成 SCSS 呢？</p><p>首先我们来对比一下共性，Stylus 的 <code>for</code> &lt;变量名&gt; <code>in</code> &lt;表达式&gt; 和 SCSS 的 <code>@each</code> &lt;变量名&gt; <code>in</code> &lt;表达式&gt; 的形式是一样的，所以我们可以先将 Stylus 中的 <code>for</code> 语法全部转换下面这样。</p><div class="language-scss extra-class"><pre class="language-scss"><code><span class="token comment">/* stylus */</span>
+for str in 1 2 3 4 5
+  bar str
+for num in 1..5
+  foo num
+
+<span class="token comment">/* scss */</span>
+<span class="token keyword">@each</span> <span class="token selector"><span class="token variable">$str</span> in 1 2 3 4 5 </span><span class="token punctuation">{</span>
+  <span class="token property">bar</span><span class="token punctuation">:</span> <span class="token variable">$str</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">@each</span> <span class="token selector"><span class="token variable">$num</span> in 1..5 </span><span class="token punctuation">{</span>
+  <span class="token property">foo</span><span class="token punctuation">:</span> <span class="token variable">$num</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这时候我们会发现转换后的 <code>1..5</code> 这种语法 SCSS 不支持，怎么办？细心的同学可能已经发现了，Stylus 的 <code>1..5</code> 这种形式和 SCSS 的 <code>1 through 5</code> 得到的结果是一样的，所以我们在转换后再做一次判断，如果转换后的代码中包含 <code>..</code> 我们再将其转换成 <code>@for</code> &lt;变量名&gt; <code>from</code><start><code>through</code><end> 这种形式。</end></start></p><div class="language-javascrip extra-class"><pre class="language-text"><code>// 转换前
+for num in 1..5
+  foo num
+
+// 转换后
+@each $num in 1..5 {
+  foo: $num;
+}
+
+// 包含 `..` 进行二次转换
+if (/\.\./.test(converText)) {
+  converText = converText.replace('@each', '@for').replace('..', 'through').replace('in', 'from')
+}
+
+// 最终结果
+@for $num from 1 through 5 {
+  foo: $num;
+}
+</code></pre></div><p>这样 Stylus 的循环语法都已经转换完了，至于 <code>@for</code> &lt;变量名&gt; <code>from</code><start><code>to</code><end> 这种形式，Stylus 中并没有相似的功能，所以我们直接抛弃就好了。</end></start></p><h3 id="处理-function-与-mixin"><a href="#处理-function-与-mixin" aria-hidden="true" class="header-anchor">#</a> 处理 Function 与 Mixin</h3><p>在 Stylus 中 Funcation 与 Mixin 的定义已经执行都是一样的语法，并且 Stylus 会将它们都解析成 Function 节点。而在 SCSS 中两种语法的定义以及使用都是不一样的，我们来看看下面两种语法的对比。</p><div class="language-scss extra-class"><pre class="language-scss"><code><span class="token comment">/* stylus 语法 */</span>
+<span class="token function">border-radius</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> val
+
+<span class="token function">add</span><span class="token punctuation">(</span>a, b<span class="token punctuation">)</span>
+  a <span class="token operator">+</span> b
+
+button
+  width <span class="token function">add</span><span class="token punctuation">(</span>5px, 10px<span class="token punctuation">)</span>
+  <span class="token function">border-radius</span><span class="token punctuation">(</span>5px<span class="token punctuation">)</span>
+
+ <span class="token comment">/* scss 语法 */</span>
+<span class="token keyword">@mixin</span> <span class="token function">border-radius</span><span class="token punctuation">(</span><span class="token variable">$val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token variable">$val</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">@function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token variable">$a</span>, <span class="token variable">$b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">@return</span> <span class="token variable">$a</span> <span class="token operator">+</span> <span class="token variable">$b</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">button </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">add</span><span class="token punctuation">(</span>5px, 10px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">@include</span> <span class="token function">border-radius</span><span class="token punctuation">(</span>5px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>前面说到 Stylus 的 Function 和 Mixin 都会被解析成 Function 节点，那我们首先要解决的问题就是要知道谁是 Function 谁是 Mixin。当时做到这里差点就放弃了，不过还是找到了突破点，我们发现 Mixin 中是包含了 CSS 相关的语法的，所以我们判断一下 Function 的子节点中是否包含 CSS 相关的节点，如果有那么它就是 Mixin。然后判断一下如果是 Mixin 前面就加上 <code>@mixin</code> 如果是 Function 前面就加上 <code>@function</code> 然后在 Block 节点中添加 <code>@return</code>， 就这样定义的部分已经解决了。</p><p>接下来我们来看看调用的部分，Function 或者 Mixin 的调用，在 Stylus 中都被解析成 Call 节点。不过有了之前的处理定义的经验，我们在调用的地方也可以去借鉴。我们发现在 Stylus 中如果是 Function 它都是在 CSS 属性的后面，或者是作为参数传递，所以只要判断它不是 Property 节点的子节点，且不是一个参数，那么它就是一个 Mixin。然后在调用 Mixin 的时候前面加上 <code>@include</code>，这样调用的部分就解决了。</p><p>上面的观念是我个人的总结，不一定是最佳方案，如果你有更好的解决方案，可以给我提 issue，谢谢。</p><h3 id="处理-boolean"><a href="#处理-boolean" aria-hidden="true" class="header-anchor">#</a> 处理 Boolean</h3><p>Stylus 的布尔运算和 JavaScript 一样，使用 <code>&amp;&amp;</code><code>||</code><code>!</code> 等符号要表示，而 SCSS 中则是使用 <code>and</code><code>or</code><code>not</code> 来表示，这个只需要在遇到 Boolean 类型的时候做一个映射转换就好了，我建了一个 Map 结构来对应他们的关系。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> <span class="token constant">OPEARTION_MAP</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">'&amp;&amp;'</span><span class="token punctuation">:</span> <span class="token string">'and'</span><span class="token punctuation">,</span>
+  <span class="token string">'!'</span><span class="token punctuation">:</span> <span class="token string">'not'</span><span class="token punctuation">,</span>
+  <span class="token string">'||'</span><span class="token punctuation">:</span> <span class="token string">'or'</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>上面列举了四种类型的转换，由于时间与篇幅的原因，这里就不一一详细叙述了，其他的类型转换相对来说都比较简单，有复杂的对比上面四种方案，应该都可以解决。</p><h2 id="添加-cli-功能"><a href="#添加-cli-功能" aria-hidden="true" class="header-anchor">#</a> 添加 CLI 功能</h2><p>代码转换的功能完成了，接下来就可以发布了，等等好像还漏了点什么？如果使用这个工具好像还得自己写代码处理文件，用起来好麻烦啊，所以我希望能和 webpack 一样，执行 webpack <entry><outpu> 就可以得到我想要的结果了，这对用户来说学习成本几乎为零，且使用方便。好吧！那就给它加上 CLI 的功能吧。</outpu></entry></p><h3 id="可执行脚本"><a href="#可执行脚本" aria-hidden="true" class="header-anchor">#</a> 可执行脚本</h3><p>Shebang（也称为 Hashbang ）是一个由井号和叹号构成的字符序列 <code>#!</code>，其出现在文本文件的第一行的前两个字符。当文件中存在 Shebang，操作系统会分析 Shebang 后面的内容，然后调用对应的解析器来解析文件，下面我们来写一个 node 的可执行脚本。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/* 可执行脚本 bin.js */</span>
+#<span class="token operator">!</span><span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>env node <span class="token comment">// 告诉操作系统调用 node 来解析文件</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hello Node Shell !'</span><span class="token punctuation">)</span>
+
+<span class="token comment">/* package.json 这个文件是必须存在的 */</span>
+<span class="token punctuation">{</span>
+  <span class="token string">&quot;bin&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;cli-demo&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;./bin.js&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>写完上面的代码，然后执行 <code>npm run link</code>，在全局的 npm 包环境中帮我们建立一个软链。这时我们在命令行中输入 <code>cli-demo</code> 就会输出 'Hello Node Shell !'，在我的 CLI 文件中一共使用了下面这些工具库。</p><ul><li><a href="https://github.com/tj/commander.js" target="_blank" rel="noopener noreferrer">commander<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 提供用户命令行输入和参数解析功能</li><li><a href="https://github.com/substack/node-optimist" target="_blank" rel="noopener noreferrer">optimist<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 获取命令行参数解析</li><li><a href="https://github.com/sindresorhus/ora" target="_blank" rel="noopener noreferrer">ora<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 命令行交互功能，例如从 loading 到 success 的状态</li></ul><h3 id="处理-vue-模板"><a href="#处理-vue-模板" aria-hidden="true" class="header-anchor">#</a> 处理 Vue 模板</h3><p>由于我开发项目使用的都是 Vue，所以在工具中添加了对于 <code>.vue</code> 文件的处理。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> result <span class="token operator">=</span> res<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> styleReg <span class="token operator">=</span> <span class="token regex">/&lt;style.*&gt;((\n|.)*)&lt;\/style&gt;/</span>
+<span class="token keyword">const</span> matchs <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>styleReg<span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>matchs<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> matchs<span class="token punctuation">.</span>length <span class="token operator">&gt;=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token function">converter</span><span class="token punctuation">(</span>matchs<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> styleText <span class="token operator">=</span> <span class="token template-string"><span class="token string">`&lt;style lang=&quot;scss&quot;&gt;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>text<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/style&gt;`</span></span>
+  result <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>styleReg<span class="token punctuation">,</span> styleText<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="总结"><a href="#总结" aria-hidden="true" class="header-anchor">#</a> 总结</h2><p>在开发这个项目的过程中，我学习到了很多以前以前没有了解过的知识，例如 AST、可执行脚本，用了一些命令行交互的工具，查看了两个项目的源码。最大的感触就是坚持，是的，在没有做这个项目之前，一直觉得转换语法是一件很高大上的事情，也从没想过我可以做出来。希望这篇文章能够给你带来提升，最后如果您觉得这篇文章对您有用，或是这个工具正好可以帮助到您，请给我的 <strong><a href="https://github.com/txs1992/stylus-converter" target="_blank" rel="noopener noreferrer">stylus-converter<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong> 加个 <code>star</code> 谢谢。</p></div></div></div></div></div></div>
+    <script src="/mt-blog/assets/js/2.c4b588a3.js" defer></script><script src="/mt-blog/assets/js/app.b4277fc3.js" defer></script>
+  </body>
+</html>
