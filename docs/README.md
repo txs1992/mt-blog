@@ -10,5 +10,5 @@ nav:
   - text: 博客
     link: /blog/
   - text: github
-    link: https://github.com/taoxusheng
+    link: https://github.com/txs1992
 ---
