@@ -26,7 +26,8 @@ module.exports = {
       ],
       '/zhihu/': [
         'vuepress',
-        'vue-business-component'
+        'vue-business-component',
+        'stylus-converter'
       ]
     }
   }
