@@ -8,7 +8,6 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Blog', link: '/blog/' },
-      { text: '知乎', link: '/zhihu/' },
       { text: '关于我', link: '/my/' },
       {
         text: '我的项目',
@@ -23,9 +22,7 @@ module.exports = {
         'git',
         'vue-amap',
         'js-function',
-        'vuepress-theme'
-      ],
-      '/zhihu/': [
+        'vuepress-theme',
         'vuepress',
         'vue-business-component',
         'stylus-converter'
