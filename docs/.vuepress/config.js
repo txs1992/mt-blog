@@ -9,6 +9,7 @@ module.exports = {
       { text: 'Home', link: '/' },
       { text: 'Blog', link: '/blog/' },
       { text: '知乎', link: '/zhihu/' },
+      { text: '关于我', link: '/my/' },
       {
         text: '我的项目',
         items: [

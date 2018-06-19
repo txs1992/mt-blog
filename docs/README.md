@@ -11,4 +11,6 @@ nav:
     link: /blog/
   - text: github
     link: https://github.com/txs1992
+  - text: 关于我
+    link: /my/
 ---
