@@ -8,6 +8,7 @@
       <div class="description">
         {{ item.description }}
       </div>
+      <div class="date">{{ formarter(item.date) }}</div>
     </el-card>
   </div>
 </template>
@@ -21,6 +22,10 @@ export default {
   },
 
   methods: {
+    formarter (data) {
+      return data.substring(0, 10)
+    },
+
     handlerClick (link) {
       this.$router.push(this.$page.path + link + '.html')
     }
@@ -43,6 +48,10 @@ export default {
     .title {
       font-size: 20px;
       padding-bottom: 4px;
+    }
+
+    .date {
+      text-align: right;
     }
   }
 }
