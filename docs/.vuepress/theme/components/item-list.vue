@@ -43,11 +43,12 @@ export default {
       return this.$page.frontmatter.items
     },
 
-    total ({ items }) {
-      return items.length || 0
+    total () {
+      return this.items.length || 0
     },
 
-    currentItems ({ items, currNum, pageSize }) {
+    currentItems () {
+      const { items, currNum, pageSize } = this
       const start = (currNum - 1) * pageSize
       return items.slice(start, start + pageSize)
     }
