@@ -40,6 +40,13 @@ export default {
   .page-content {
     width: 800px;
     margin: 15px auto;
+
+    .custom {
+      img {
+        max-width: 800px;
+        max-height: 500px;
+      }
+    }
   }
 }
 </style>
