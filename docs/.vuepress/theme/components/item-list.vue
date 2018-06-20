@@ -2,13 +2,19 @@
   <div class="component-item-list">
     <el-card
       v-for="item in currentItems"
-      shadow="always"
+      shadow="hover"
       @click.native="handlerClick(item.link)">
       <div class="title">{{ item.title }}</div>
-      <div class="description">
-        {{ item.description }}
+      <div class="card-content">
+        <img v-if="item.img" :src="item.img" class="image">
+        <div class="description">
+          {{ item.description }}
+        </div>
       </div>
-      <div class="date">{{ formarter(item.date) }}</div>
+      <div class="date">
+        <i class="el-icon-date"></i>
+        {{ formarter(item.date) }}
+      </div>
     </el-card>
     <el-pagination
       layout="total, sizes, prev, pager, next, jumper"
@@ -54,14 +60,6 @@ export default {
 
     handlerClick (link) {
       this.$router.push(this.$page.path + link + '.html')
-    },
-
-    handleSizeChange (size) {
-      console.log(size)
-    },
-
-    handleCurrentChange () {
-
     }
   }
 }
@@ -81,11 +79,28 @@ export default {
 
     .title {
       font-size: 20px;
-      padding-bottom: 4px;
+      font-weight: bold;
+      padding-bottom: 8px;
     }
 
     .date {
       text-align: right;
+    }
+
+    .card-content {
+      display: flex;
+
+      .image {
+        width: 35%;
+        height: 140px;
+        border-radius: 6px;
+        margin: 10px 20px 0px 10px;
+      }
+
+      .description {
+        flex: 1;
+        margin-top: 10px;
+      }
     }
   }
 

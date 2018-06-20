@@ -23,14 +23,6 @@ export default {
     },
   },
 
-  watch: {
-    '$route': {
-      immediate: true,
-      handler (v) {
-      }
-    }
-  },
-
   components: {
     Home,
     ItemList
@@ -43,10 +35,10 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
 
   .page-content {
-    width: 60%;
-    min-width: 800px;
+    width: 800px;
     margin: 15px auto;
   }
 }
