@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hello MT-BLOG | git 命令行</title>
+    <meta name="description" content="12345，上山打老虎。">
+    
+    
+    <link rel="preload" href="/mt-blog/assets/css/0.styles.23538fa2.css" as="style"><link rel="preload" href="/mt-blog/assets/js/app.55195859.js" as="script"><link rel="preload" href="/mt-blog/assets/js/8.d57c061e.js" as="script"><link rel="prefetch" href="/mt-blog/assets/js/5.52fe47bd.js"><link rel="prefetch" href="/mt-blog/assets/js/1.581b64de.js"><link rel="prefetch" href="/mt-blog/assets/js/2.c0b5bb8c.js"><link rel="prefetch" href="/mt-blog/assets/js/3.6a126b26.js"><link rel="prefetch" href="/mt-blog/assets/js/4.7d792813.js"><link rel="prefetch" href="/mt-blog/assets/js/6.7db1819b.js"><link rel="prefetch" href="/mt-blog/assets/js/7.350f942b.js"><link rel="prefetch" href="/mt-blog/assets/js/9.e119a660.js"><link rel="prefetch" href="/mt-blog/assets/js/10.70f78663.js"><link rel="prefetch" href="/mt-blog/assets/js/11.b9550dc8.js"><link rel="prefetch" href="/mt-blog/assets/js/12.5a5926a7.js">
+    <link rel="stylesheet" href="/mt-blog/assets/css/0.styles.23538fa2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="page-main"><div class="component-nav-menu"><div class="placeholder"></div><div class="search-wrapper"><div aria-haspopup="listbox" role="combobox" aria-owns="el-autocomplete-6737" background-color="#eee" class="el-autocomplete"><div class="el-input el-input--prefix"><!----><input type="text" autocomplete="off" valueKey="title" placeholder="请输入内容" fetchSuggestions="function () { [native code] }" triggerOnFocus="true" debounce="300" placement="bottom-start" value="" class="el-input__inner"><span class="el-input__prefix"><i class="el-input__icon el-icon-search"></i></span><!----><!----></div><div role="region" class="el-autocomplete-suggestion el-popper" style="width:;display:none;"><div class="el-scrollbar"><div class="el-autocomplete-suggestion__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"><ul class="el-scrollbar__view el-autocomplete-suggestion__list"></ul></div><div class="el-scrollbar__bar is-horizontal"><div class="el-scrollbar__thumb" style="width:0;transform:translateX(0%);ms-transform:translateX(0%);webkit-transform:translateX(0%);"></div></div><div class="el-scrollbar__bar is-vertical"><div class="el-scrollbar__thumb" style="height:0;transform:translateY(0%);ms-transform:translateY(0%);webkit-transform:translateY(0%);"></div></div></div></div></div></div><ul role="menubar" class="el-menu--horizontal el-menu" style="background-color:;"><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;border-bottom-color:transparent;background-color:;">
+        Home
+      </li><li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="color:;border-bottom-color:;background-color:;">
+        Blog
+      </li><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;border-bottom-color:transparent;background-color:;">
+        关于我
+      </li><li role="menuitem" aria-haspopup="true" class="el-submenu"><div class="el-submenu__title" style="border-bottom-color:transparent;color:;background-color:;">
+          我的项目
+        <i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><div class="el-menu--horizontal" style="display:none;"><ul role="menu" class="el-menu el-menu--popup el-menu--popup-" style="background-color:;"><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;background-color:;">
+          focus-outside
+        </li><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;background-color:;">
+          stylus-converter
+        </li></ul></div></li></ul></div><div class="page-container"><div class="component-page"><div class="page-content"><!----><div class="content custom"><h1 id="git-命令行"><a href="#git-命令行" aria-hidden="true" class="header-anchor">#</a> git 命令行</h1><p><img src="https://cloud.githubusercontent.com/assets/17583395/23828785/ddc1ef96-0717-11e7-8d47-26c0556dbdb5.jpeg" alt="git"></p><h2 id="目录"><a href="#目录" aria-hidden="true" class="header-anchor">#</a> 目录</h2><ol><li><p><a href="##%E6%9C%AC%E5%9C%B0%E5%BA%93">本地库</a></p></li><li><p><a href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">远程仓库</a></p></li><li><p><a href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">分支管理</a></p><p>3.1 <a href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF">创建与合并分支</a></p><p>3.2 <a href="#%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81">解决冲突</a></p></li><li><p><a href="#%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86">标签管理</a></p><p>4.1 <a href="#%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE">创建标签</a></p><p>4.2 <a href="#%E6%93%8D%E4%BD%9C%E6%A0%87%E7%AD%BE">操作标签</a></p></li></ol><br><h2 id="本地库"><a href="#本地库" aria-hidden="true" class="header-anchor">#</a> 本地库</h2><blockquote><p>初始化一个 Git 版本库</p></blockquote><pre><code>git init
+</code></pre><blockquote><p>查看 Git 版本库状态</p></blockquote><pre><code>git status
+</code></pre><blockquote><p>查看被改动文件的详细信息</p></blockquote><pre><code>git diff &lt;fileName&gt;
+</code></pre><blockquote><p>将文件加入缓存区</p></blockquote><pre><code>git add &lt;fileName&gt;
+</code></pre><blockquote><p>提交到版本库</p></blockquote><pre><code>git commit -m 'message'
+</code></pre><blockquote><p>查看版本库操作日志</p></blockquote><pre><code>git log
+</code></pre><blockquote><p>格式显示版本库操作日志</p></blockquote><pre><code>git log --pretty=oneline
+</code></pre><blockquote><p>回滚（重置）版本库</p></blockquote><pre><code>git reset --hard &lt;版本号&gt;
+</code></pre><blockquote><p><strong>工作区（Woking Directory）</strong></p></blockquote><pre><code>就是你在电脑里能看到的目录，或者说你当前 Git 版本库所在的文件夹
+</code></pre><blockquote><p><strong>版本库（Repository）</strong></p></blockquote><p>工作区有一个隐藏的目录 .git,这个不算工作区,而是 Git 的版本库
+Git的版本库里存了很多东西，其中最重要的就是称为 <code>stage</code>(或者叫 <code>index</code>) 的暂存区，
+还有 Git 为我们自动创建的第一个分支 <code>master</code>，以及指向 <code>master</code> 的一个指针叫做 <code>HEAD</code>。</p><blockquote><p>撤销工作区修改</p></blockquote><pre><code>git checkout -- &lt;fileName&gt;
+</code></pre><blockquote><p>撤销暂存区修改</p></blockquote><pre><code>git reset HEAD &lt;fileName&gt;
+</code></pre><blockquote><p>删除文件</p></blockquote><pre><code>git rm &lt;fileName&gt;
+</code></pre><br><h2 id="远程仓库"><a href="#远程仓库" aria-hidden="true" class="header-anchor">#</a> 远程仓库</h2><blockquote><p>关联远程仓库</p></blockquote><pre><code>git remote add origin git@github.com:&lt;github地址&gt;/&lt;仓库名称&gt;.git
+</code></pre><blockquote><p>将内容推送的远程库</p></blockquote><pre><code>git push -u origin &lt;分支&gt;
+git push origin &lt;分支&gt;
+</code></pre><p>第一次推送 <code>master</code> 分支时，加上了 <code>-u</code> 参数，Git 不但会把本地的 <code>master</code> 分支内容推送到远程新的 <code>master</code> 分支，
+还会把本地的 <code>master</code> 分支和远程的 <code>master</code> 分支关联起来，在以后的推送或者拉取时就可以简化命令。</p><blockquote><p>克隆远程库</p></blockquote><pre><code>git clone git@github.com:&lt;github地址&gt;/&lt;仓库名称&gt;.git
+</code></pre><br><h2 id="分支管理"><a href="#分支管理" aria-hidden="true" class="header-anchor">#</a> 分支管理</h2><h3 id="创建与合并分支"><a href="#创建与合并分支" aria-hidden="true" class="header-anchor">#</a> 创建与合并分支</h3><blockquote><p>创建并切换分支</p></blockquote><pre><code>git checkout -b &lt;branchName&gt;
+</code></pre><blockquote><p>查看分支</p></blockquote><pre><code>git branch
+</code></pre><blockquote><p>切换分支</p></blockquote><pre><code>git checkout &lt;branchName&gt;
+</code></pre><blockquote><p>合并分支</p></blockquote><pre><code>git merge &lt;branchName&gt;
+</code></pre><blockquote><p>删除分支</p></blockquote><pre><code>git branch -d &lt;branchName&gt;
+</code></pre><h3 id="解决冲突"><a href="#解决冲突" aria-hidden="true" class="header-anchor">#</a> 解决冲突</h3><blockquote><p>查看分支合并情况</p></blockquote><pre><code>git log --graph --pertty=oneline --abbrev-commit
+</code></pre><blockquote><p>储藏</p></blockquote><pre><code>git stash
+</code></pre><blockquote><p>查看储藏列表</p></blockquote><pre><code>git stash list
+</code></pre><blockquote><p>应用储藏</p></blockquote><pre><code>git stash apply &lt;stash@{xx}&gt;
+</code></pre><blockquote><p>删除储藏</p></blockquote><pre><code>git stash drop &lt;index | stash&gt;
+</code></pre><blockquote><p>应用并删除储藏</p></blockquote><pre><code>git stash pop &lt;index | stash&gt;
+</code></pre><blockquote><p>显示储藏信息</p></blockquote><pre><code>git stash show &lt;index | stash&gt;
+</code></pre><blockquote><p>查看远程库信息</p></blockquote><pre><code>git remote
+</code></pre><blockquote><p>查看远程库详细信息</p></blockquote><pre><code>git remote -v
+</code></pre><blockquote><p>推送分支</p></blockquote><pre><code>git push origin &lt;branchName&gt;
+</code></pre><br><h2 id="标签管理"><a href="#标签管理" aria-hidden="true" class="header-anchor">#</a> 标签管理</h2><h3 id="创建标签"><a href="#创建标签" aria-hidden="true" class="header-anchor">#</a> 创建标签</h3><blockquote><p>创建标签</p></blockquote><pre><code>git tag &lt;name&gt;
+</code></pre><blockquote><p>查看标签</p></blockquote><pre><code>git tag
+</code></pre><blockquote><p>为commit id 添加标签</p></blockquote><pre><code>git tag &lt;commit id&gt;
+</code></pre><blockquote><p>查看标签信息</p></blockquote><pre><code>git show &lt;tagName&gt;
+</code></pre><blockquote><p>创建带有说明的标签</p></blockquote><pre><code>git tag -a &lt;tagName&gt; -m 'your message'
+</code></pre><h3 id="操作标签"><a href="#操作标签" aria-hidden="true" class="header-anchor">#</a> 操作标签</h3><blockquote><p>删除标签</p></blockquote><pre><code>git tag -d &lt;tagName&gt;
+</code></pre><blockquote><p>推送标签到远程</p></blockquote><pre><code>git push origin &lt;tagName&gt;
+</code></pre><blockquote><p>推送所以标签</p></blockquote><pre><code>git push origin --tags
+</code></pre><blockquote><p>删除远程标签</p></blockquote><p>删除远程标签需，要先删除本地标签，然后再执行</p><pre><code>git push origin :refs/tags/&lt;tagNameg&gt;
+</code></pre></div></div></div></div></div></div>
+    <script src="/mt-blog/assets/js/8.d57c061e.js" defer></script><script src="/mt-blog/assets/js/app.55195859.js" defer></script>
+  </body>
+</html>

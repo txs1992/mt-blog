@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hello MT-BLOG | JavaScript 函数调用的四种方式与区别</title>
+    <meta name="description" content="12345，上山打老虎。">
+    
+    
+    <link rel="preload" href="/mt-blog/assets/css/0.styles.23538fa2.css" as="style"><link rel="preload" href="/mt-blog/assets/js/app.55195859.js" as="script"><link rel="preload" href="/mt-blog/assets/js/7.350f942b.js" as="script"><link rel="prefetch" href="/mt-blog/assets/js/5.52fe47bd.js"><link rel="prefetch" href="/mt-blog/assets/js/1.581b64de.js"><link rel="prefetch" href="/mt-blog/assets/js/2.c0b5bb8c.js"><link rel="prefetch" href="/mt-blog/assets/js/3.6a126b26.js"><link rel="prefetch" href="/mt-blog/assets/js/4.7d792813.js"><link rel="prefetch" href="/mt-blog/assets/js/6.7db1819b.js"><link rel="prefetch" href="/mt-blog/assets/js/8.d57c061e.js"><link rel="prefetch" href="/mt-blog/assets/js/9.e119a660.js"><link rel="prefetch" href="/mt-blog/assets/js/10.70f78663.js"><link rel="prefetch" href="/mt-blog/assets/js/11.b9550dc8.js"><link rel="prefetch" href="/mt-blog/assets/js/12.5a5926a7.js">
+    <link rel="stylesheet" href="/mt-blog/assets/css/0.styles.23538fa2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="page-main"><div class="component-nav-menu"><div class="placeholder"></div><div class="search-wrapper"><div aria-haspopup="listbox" role="combobox" aria-owns="el-autocomplete-91" background-color="#eee" class="el-autocomplete"><div class="el-input el-input--prefix"><!----><input type="text" autocomplete="off" valueKey="title" placeholder="请输入内容" fetchSuggestions="function () { [native code] }" triggerOnFocus="true" debounce="300" placement="bottom-start" value="" class="el-input__inner"><span class="el-input__prefix"><i class="el-input__icon el-icon-search"></i></span><!----><!----></div><div role="region" class="el-autocomplete-suggestion el-popper" style="width:;display:none;"><div class="el-scrollbar"><div class="el-autocomplete-suggestion__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"><ul class="el-scrollbar__view el-autocomplete-suggestion__list"></ul></div><div class="el-scrollbar__bar is-horizontal"><div class="el-scrollbar__thumb" style="width:0;transform:translateX(0%);ms-transform:translateX(0%);webkit-transform:translateX(0%);"></div></div><div class="el-scrollbar__bar is-vertical"><div class="el-scrollbar__thumb" style="height:0;transform:translateY(0%);ms-transform:translateY(0%);webkit-transform:translateY(0%);"></div></div></div></div></div></div><ul role="menubar" class="el-menu--horizontal el-menu" style="background-color:;"><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;border-bottom-color:transparent;background-color:;">
+        Home
+      </li><li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="color:;border-bottom-color:;background-color:;">
+        Blog
+      </li><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;border-bottom-color:transparent;background-color:;">
+        关于我
+      </li><li role="menuitem" aria-haspopup="true" class="el-submenu"><div class="el-submenu__title" style="border-bottom-color:transparent;color:;background-color:;">
+          我的项目
+        <i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div><div class="el-menu--horizontal" style="display:none;"><ul role="menu" class="el-menu el-menu--popup el-menu--popup-" style="background-color:;"><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;background-color:;">
+          focus-outside
+        </li><li role="menuitem" tabindex="-1" class="el-menu-item" style="color:;background-color:;">
+          stylus-converter
+        </li></ul></div></li></ul></div><div class="page-container"><div class="component-page"><div class="page-content"><!----><div class="content custom"><h1 id="javascript-函数调用的四种方式与区别"><a href="#javascript-函数调用的四种方式与区别" aria-hidden="true" class="header-anchor">#</a> JavaScript 函数调用的四种方式与区别</h1><blockquote><p>本篇短文大部分内容出自《JavaScript语言精粹》一书，有兴趣的同学可以去购买阅读，很棒的一本书，是js大师 道格拉斯·克罗克福德 的作品。</p></blockquote><p>调用一个函数时，会暂停当前函数的执行，传递控制权和参数给新函数(被调用的函数)。除了被调用的函数声明时的形参，每个函数还接收两个附加的参数：this和arguments。参数this在面向对象编程中非常重要，它的值取决于调用的模式。在JavaScript中函数有4种调用模式：方法调用模式、函数调用模式、构造器调用模式和apply(call)调用模式。这些调用模式在如何初始化this上存在差异。</p><h2 id="方法调用模式"><a href="#方法调用模式" aria-hidden="true" class="header-anchor">#</a> 方法调用模式</h2><p>当一个函数被保存为对象的一个属性时，我们称它为一个方法。当一个对象的方法被调用时，this被绑定到调用方法的对象。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> myObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name <span class="token punctuation">:</span> <span class="token string">&quot;MT&quot;</span><span class="token punctuation">,</span>
+    setName <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+myObj<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">&quot;哀木涕&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObj<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//&quot;哀木涕&quot;</span>
+
+myObj<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">&quot;小德&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObj<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//小德</span>
+</code></pre></div><p>方法可以使用this访问自己所属的对象，所以它能从对象中取值或对对象进行修改。this和对象的绑定发生在方法调用的时候。这个“超级”延迟绑定(vary late binding)使得函数可以对this高度复用。通过this可以取得它们所属对象的上下文方法称为公共方法（public method）。</p><h2 id="函数调用模式"><a href="#函数调用模式" aria-hidden="true" class="header-anchor">#</a> 函数调用模式</h2><p>当一函数并非一个对象的属性时，那么它就是被当做一个函数来调用的:</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//sum的值为3。</span>
+</code></pre></div><p>以此模式调用函数时，this被绑定到全局对象。这是语言设计上的一个错误。倘若语言设计正确，那么当内部函数被调用时，this应该仍然绑定到外部函数的this变量。这个设计错误的后果就是方法不能利用内部函数来帮助它工作，因为内部函数的this被绑定了错误的值(全局对象)，所以不能共享该方法对对象的访问权。幸运的是，有一个很容易的解决方案：如果一个对象的方法定义了一个变量并将this赋值给它，那么内部函数就可以通过那个变量访问到外部方法调用的对象。按照约定，我们把那个变量命名为 that。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code>myObj<span class="token punctuation">.</span><span class="token function-variable function">changeName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>    <span class="token comment">//解决方法</span>
+
+    <span class="token keyword">var</span> <span class="token function-variable function">change</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        that<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;change&quot;</span> <span class="token operator">+</span> that<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">change</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//以函数的方式调用change;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//以方法的形式调用changeName。</span>
+myObj<span class="token punctuation">.</span><span class="token function">changeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObj<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="构造器调用模式"><a href="#构造器调用模式" aria-hidden="true" class="header-anchor">#</a> 构造器调用模式</h2><p>JavaScript是一门基于原型继承的语言。这意味着对象可以直接从其他对象继承属性。该语言是无类型的。</p><p>如果在一个函数前面带上 new 关键字来调用，那么背地里将会创建一个连接到该函数的prototype成员的新对象，同时this会被绑定到那个新对象上。</p><p>new 前缀也会改变return 语句的行为,如果return 的值是对象，那么将会将这个对象返回，否则将返回默认创建的新对象。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">//创建一个名为Person的构造器函数。它构造一个带有name属性的对象。</span>
+<span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span>howName<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> howName<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">&quot;MT&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>一个函数，如果创建的目的就是希望结合new前缀来调用，那它就被称为构造器函数。按照约定，它们保存在以大写格式命名的变量里。如果调用构造函数时没有在前面加上new ,可能会发生非常糟糕的事情，（这时将会以函数的方式调用，由于函数的方式调用this是全局对象，这时不会返回新对象，而是在全局对象上添加属性。）既没有编译时警告，，也没有运行时警告，所以大写约定非常重要。</p><h2 id="apply-call调用模式"><a href="#apply-call调用模式" aria-hidden="true" class="header-anchor">#</a> apply/call调用模式</h2><p>因为JavaScript是一门函数式的面向对象编程语言，所以函数可以拥有方法。</p><p>apply/call方法允许我们选择this的值。apply方法接受两个参数，第一个是要绑定的this的值，第二个参数是参数数组。call方法第一个参数是要绑定的this的值，后面紧跟的是相关的参数。</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">setAge</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+setAge<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>myObj<span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObj<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//23</span>
+
+setAge<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>myObj<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">24</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObj<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//24</span>
+</code></pre></div></div></div></div></div></div></div>
+    <script src="/mt-blog/assets/js/7.350f942b.js" defer></script><script src="/mt-blog/assets/js/app.55195859.js" defer></script>
+  </body>
+</html>
