@@ -4,8 +4,7 @@
     <div
       v-else
       class="page-content">
-      <item-list>
-      </item-list>
+      <item-list v-if="isBlog"></item-list>
       <Content/>
     </div>
   </div>
@@ -18,12 +17,10 @@ import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/prism.js'
 
 export default {
-  watch: {
-    '$route': {
-      immediate: true,
-      handler (v) {
-      }
-    }
+  computed: {
+    isBlog ({ $route }) {
+      return $route.path === '/blog/'
+    },
   },
 
   components: {
@@ -37,13 +34,12 @@ export default {
 .component-page {
   width: 100%;
   height: 100%;
+  overflow: auto;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
 
   .page-content {
-    min-width: 800px;
-    width: 60%;
-    height: 100%;
-    margin: auto;
-    overflow: auto;
+    width: 800px;
+    margin: 15px auto;
   }
 }
 </style>
