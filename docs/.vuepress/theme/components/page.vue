@@ -18,8 +18,8 @@ import 'prismjs/prism.js'
 
 export default {
   computed: {
-    isBlog ({ $route }) {
-      return $route.path === '/blog/'
+    isBlog () {
+      return this.$route.path === '/blog/'
     },
   },
 
