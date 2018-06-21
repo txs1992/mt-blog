@@ -7,20 +7,48 @@
       <item-list v-if="isBlog"></item-list>
       <Content/>
     </div>
+    <el-button
+      v-if="isResume"
+      type="primary"
+      icon="el-icon-download"
+      class="download-btn"
+      @click="downloadResume">
+      下载简历
+    </el-button>
   </div>
 </template>
 
 <script>
+import html2canvas from 'html2canvas'
 import Home from './Home.vue'
 import ItemList from './item-list.vue'
 import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/prism.js'
+
+function downLoadImage(canvas,name) {
+    var a = document.createElement("a")
+    a.href = canvas.toDataURL()
+    a.download = name
+    a.click()
+}
 
 export default {
   computed: {
     isBlog () {
       return this.$route.path === '/blog/'
     },
+
+    isResume () {
+      return this.$route.path === '/my/'
+    }
+  },
+
+  methods: {
+    downloadResume () {
+      html2canvas(document.querySelector('#resume')).then(canvas => {
+        downLoadImage(canvas, '简历')
+      })
+    }
   },
 
   components: {
@@ -47,6 +75,12 @@ export default {
         max-height: 500px;
       }
     }
+  }
+
+  .download-btn {
+    position: fixed;
+    top: 100px;
+    right: 100px;
   }
 }
 </style>
