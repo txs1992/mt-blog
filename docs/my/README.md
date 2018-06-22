@@ -39,7 +39,47 @@
         </ul>
       </div>
     </div>
-    <div class="description">
+    <div class="my-content">
+      <div class="introduction">
+        <div class="title">我叫MT</div>
+        <div class="description">12345，上山打老虎</div>
+      </div>
+      <div class="block">
+        <div class="header">
+          <div class="title">求职意向</div>
+          <div class="line"><div></div></div>
+        </div>
+        <div class="block-content">
+          12345，上山打老虎。
+        </div>
+      </div>
+      <div class="block">
+        <div class="header">
+          <div class="title">教育背景</div>
+          <div class="line"><div></div></div>
+        </div>
+        <div class="block-content">
+          12345，上山打老虎。
+        </div>
+      </div>
+      <div class="block">
+        <div class="header">
+          <div class="title">工作经验</div>
+          <div class="line"><div></div></div>
+        </div>
+        <div class="block-content">
+          12345，上山打老虎。
+        </div>
+      </div>
+      <div class="block">
+        <div class="header">
+          <div class="title">自我评价</div>
+          <div class="line"><div></div></div>
+        </div>
+        <div class="block-content">
+          12345，上山打老虎。
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -85,7 +125,7 @@ export default {
         font-size: 18px;
         font-weight: bold;
         background: #1870bd;
-        padding: 8px;
+        padding: 6px 12px;
       }
 
       .items {
@@ -98,9 +138,44 @@ export default {
     }
   }
 
-  .description {
+  .my-content {
     flex: 2;
     background: #fbfbfb;
+    padding: 50px 20px;
+
+    .introduction {
+      .title {
+        font-size: 28px;
+        font-weight: bold;
+      }
+    }
+
+    .block {
+      margin-top: 20px;
+
+      .header {
+        display: flex;
+
+        .title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        .line {
+          flex: 1;
+          margin-left: 10px;
+
+          div {
+            margin-top: 12px;
+            border-bottom: 4px solid #1870bd;
+          }
+        }
+      }
+
+      .block-content {
+
+      }
+    }
   }
 }
 </style>
