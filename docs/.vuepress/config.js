@@ -25,7 +25,8 @@ module.exports = {
         'vuepress-theme',
         'vuepress',
         'vue-business-component',
-        'stylus-converter'
+        'stylus-converter',
+        'click-outside'
       ]
     }
   }
