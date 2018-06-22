@@ -61,7 +61,7 @@ bind (el, binding, vnode) {
 import { bind: focusBind, unbind: focusUnbind } from 'focus-outside'
 
 // 如果你是使用 CDN 引入的，应该这么引入
-//
+// <script src="https://unpkg.com/focus-outside@0.4.0/lib/index.js"></script>
 const { bind: focusBind, unbind: focusUnbind } = FocusOutside
 
 const elm = document.querySelector('#dorpdown-button')
@@ -77,10 +77,12 @@ function callback () {
 
 [查看在线示例](https://jsfiddle.net/_MT_/z0dejc23/9/)
 
+#### 注意
+
 前面说到过元素变成 focusable 后，当它获取焦点浏览器会给它加上高亮样式，如果你不希望看到和这个样式，你只需要将这个元素的 CSS 属性 outline 设置为 none。focsout-outside 0.5 的版本新增 className 参数，为每个绑定的元素添加类名，默认类名是 focus-outside，执行 unbind 函数时候会将这个类名从元素上删除 。
 
 ```javascript
-
+<div id="focus-ele"></div>
 
 // js
 const elm = document.querySelector('#focus-ele')
@@ -109,7 +111,9 @@ export default {
 }
 
 // xx.vue
-
+<template>
+    <div v-outside="handleOutside"></div>
+</template>
 
 import outside from './outside.js'
 
@@ -129,18 +133,22 @@ export default {
 #### 在 Element 中使用
 
 ```javascript
-
-
-      下拉菜单
-
-
-    黄金糕
-    狮子头
-    螺蛳粉
-    双皮奶
-    蚵仔煎
-
-
+<el-dropdown
+    ref="dropdown"
+    trigger="click">
+  <span class="el-dropdown-link">
+      下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+  <el-dropdown-menu
+    ref="dropdownContent"
+    slot="dropdown">
+    <el-dropdown-item>黄金糕</el-dropdown-item>
+    <el-dropdown-item>狮子头</el-dropdown-item>
+    <el-dropdown-item>螺蛳粉</el-dropdown-item>
+    <el-dropdown-item>双皮奶</el-dropdown-item>
+    <el-dropdown-item>蚵仔煎</el-dropdown-item>
+  </el-dropdown-menu>
+</el-dropdown>
 
 import { bind: focusBind, unbind: focusUnbind } from 'focus-outside'
 
@@ -167,7 +175,7 @@ const { bind: focusBind, unbind: focusUnbind } = FocusOutside
 
 function getItems () {
   return [1,2,3,4].map(item => {
-    return {item} st menu item
+    return <Menu.Item key={item}>{item} st menu item </Menu.Item>
   })
 }
 
@@ -178,7 +186,7 @@ class MyMenu extends React.Component {
   }
 
   render () {
-    return ({getItems()})
+    return (<Menu ref="menu" onClick={this.props.onClick}>{getItems()}</Menu>)
   }
 
   componentDidMount () {
@@ -203,13 +211,17 @@ class MyDropdown extends React.Component {
   }
 
   render () {
-    const menu = ()
+    const menu = (<MyMenu outside={ this.handleOutside } onClick={ this.handleClick } />)
     return (
-
-
-          Button
-
-
+      <Dropdown
+        ref="divRef"
+        visible={this.state.visible}
+        trigger={['click']}
+        overlay={ menu }>
+        <Button style={{ marginLeft: 8 }} onClick={ this.handleClick }>
+          Button <Icon type="down" />
+        </Button>
+      </Dropdown>
     )
   }
 
@@ -232,7 +244,7 @@ class MyDropdown extends React.Component {
 }
 
 ReactDOM.render(
-  ,
+  <MyDropdown/>,
   document.getElementById('container')
 )
 ```
