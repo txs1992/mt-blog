@@ -252,3 +252,13 @@ ReactDOM.render(
 ```
 
 [查看在线示例](https://codepen.io/taoxusheng/pen/KeRyXL?editors=1010)
+
+### 总结
+
+Iframe 元素无法触发鼠标事件，在 Iframe 中触发 clickOutside, 更好的做法是使用 focusin 与 focusout 事件。将 tabindex 设置为 -1 可以将元素变成 focusable 元素。
+
+相关链接
+
+ - [MDN focusin](https://developer.mozilla.org/en-US/docs/Web/Events/focusin)
+ - [说说 tabindex 的那些事儿](http://bubkoo.com/2015/02/01/using-the-tabindex-attribute/)
+ - [HTML tabindex属性与web网页键盘无障碍访问](https://www.zhangxinxu.com/wordpress/2017/05/html-tabindex/)
