@@ -6,17 +6,17 @@
 
 ### 为什么无法触发 clickOutside
 
-因为大多数的 UI 组件库，例如 Element、ant-design、Iview 等都是通过鼠标事件来处理， 下面这段是 Iview 中的 clickOutside 代码，Iview 直接给 Document 绑定了 click 事件，当 click 事件触发时候，判断点击目标是否包含在绑定元素中，如果不是就调用绑定的函数。
+目前大多数的 UI 组件库，例如 Element、ant-design、Iview 等都是通过鼠标事件来处理， 下面这段是 Iview 中的 clickOutside 代码，Iview 直接给 Document 绑定了 click 事件，当 click 事件触发时候，判断点击目标是否包含在绑定元素中，如果不是就调用绑定的函数。
 
 ```javascript
 bind (el, binding, vnode) {
   function documentHandler (e) {
-      if (el.contains(e.target)) {
-          return false;
-      }
-      if (binding.expression) {
-          binding.value(e);
-      }
+    if (el.contains(e.target)) {
+      return false;
+    }
+    if (binding.expression) {
+      binding.value(e);
+    }
   }
   el.__vueClickOutside__ = documentHandler;
   document.addEventListener('click', documentHandler);
@@ -43,7 +43,9 @@ bind (el, binding, vnode) {
 
 不过这种方法虽然很棒，但是也存在一些问题，浏览器兼容性，下面是 MDN 给出的浏览器兼容情况，Firefox 低版本不兼容。
 
-![WX20180621-175744](WX20180621-175744.png)
+<img
+  src="../images/focusout.png">
+</img>
 
 ### 使用 focus-outside 库
 
@@ -99,30 +101,31 @@ focusBind(elm, callback, 'my-focus-name')
 #### 在 Vue 中使用
 
 ```javascript
+
 // outside.js
 export default {
-    bind (el, binding) {
-      focusBind(el, binding.value)
+  bind (el, binding) {
+    focusBind(el, binding.value)
   },
 
   unbind (el, binding) {
-      focusUnbind(el, binding.value)
+    focusUnbind(el, binding.value)
   }
 }
 
 // xx.vue
 <template>
-    <div v-outside="handleOutside"></div>
+  <div v-outside="handleOutside"></div>
 </template>
 
 import outside from './outside.js'
 
 export default {
-    directives: { outside },
+  directives: { outside },
 
   methods: {
     handleOutside () {
-      // 做点什么...
+    // 做点什么...
     }
   }
 }
@@ -134,10 +137,10 @@ export default {
 
 ```javascript
 <el-dropdown
-    ref="dropdown"
-    trigger="click">
+  ref="dropdown"
+  trigger="click">
   <span class="el-dropdown-link">
-      下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+    下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
   </span>
   <el-dropdown-menu
     ref="dropdownContent"
@@ -170,8 +173,8 @@ export default {
 #### 在 ant-design 中使用
 
 ```javascript
-const { Menu, Dropdown, Icon, Button } = antd
-const { bind: focusBind, unbind: focusUnbind } = FocusOutside
+import { Menu, Dropdown, Icon, Button } = antd
+import { bind: focusBind, unbind: focusUnbind } = 'focus-outside'
 
 function getItems () {
   return [1,2,3,4].map(item => {
@@ -250,3 +253,14 @@ ReactDOM.render(
 ```
 
 [查看在线示例](https://codepen.io/taoxusheng/pen/KeRyXL?editors=1010)
+
+### 总结
+
+Iframe 元素无法触发鼠标事件，在 Iframe 中触发 clickOutside, 更好的做法是使用 focusin 与 focusout 事件。将 tabindex 设置为 -1 可以将元素变成 focusable 元素。
+
+相关链接
+
+ - [MDN focusin](https://developer.mozilla.org/en-US/docs/Web/Events/focusin)
+ - [focus-outside](https://github.com/txs1992/focus-outside)
+ - [说说 tabindex 的那些事儿](http://bubkoo.com/2015/02/01/using-the-tabindex-attribute/)
+ - [HTML tabindex 属性与 web 网页键盘无障碍访问](https://www.zhangxinxu.com/wordpress/2017/05/html-tabindex/)
