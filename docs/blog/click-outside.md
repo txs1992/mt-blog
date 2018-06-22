@@ -43,7 +43,9 @@ bind (el, binding, vnode) {
 
 不过这种方法虽然很棒，但是也存在一些问题，浏览器兼容性，下面是 MDN 给出的浏览器兼容情况，Firefox 低版本不兼容。
 
-![WX20180621-175744](WX20180621-175744.png)
+<img
+  src="../images/focusout.png">
+</img>
 
 ### 使用 focus-outside 库
 
