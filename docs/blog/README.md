@@ -2,7 +2,7 @@
 component: item-list
 items:
   - title: git 命令行
-    description: 
+    description:
     link: git
     date: 2018-03-18
     img: https://lucasvidelaine.files.wordpress.com/2018/01/git1.png?w=480
@@ -10,12 +10,12 @@ items:
     description: 春节的假期刚刚过去不久，大脑还没有从假期综合症中缓过来，就迎来了开工的日子，不知道各位有没有收到开工大红包？有没有被虐狗？
     link: vue-business-component
     date: 2018-03-20
-    img: https://pic4.zhimg.com/v2-40883abc48d9993e58315294e51c6bd8_1200x500.jpg
+    img: https://sabe.io/tutorials/getting-started-with-vue-js/hero.png
   - title: VuePress 快速踩坑
     description: 最近有个开源项目非常火，那就是尤小右开发的 VuePress，VuePress 可以让您非常方便的在 Markdown 文档中编写 Vue 代码，并且 VuePress 对编译后的 HTML 文件做了一些针对搜索引擎的优化。另外 VuePress 针对 Markdown 文件做了一些扩展使其功能更加强大，本文将围绕搭建一个 Github 的静态博客展开。
     link: vuepress
     date: 2018-05-21
-    img: https://pic4.zhimg.com/v2-7520d66da30349b0c348a03846985d47_1200x500.jpg
+    img: https://static.qdskill.com/2018/05/vuepress.jpg
   - title: JavaScript 函数调用的四种方式与区别
     description: 本篇短文大部分内容出自《JavaScript语言精粹》一书，有兴趣的同学可以去购买阅读，很棒的一本书，是js大师 道格拉斯·克罗克福德 的作品。
     link: js-function
@@ -36,4 +36,9 @@ items:
     link: stylus-converter
     date: 2018-06-12
     img: https://pic3.zhimg.com/v2-da8def8a21a78366ddb2122861401e43_r.jpg
+  - title: 如何优雅解决 Iframe 无法触发 clickOutside
+    description: 在公司的一次小组分享会上，组长给我们分享了一个他在项目中遇到的一个问题。在一个嵌入 Iframe 的系统中，当我们点击 Dropdown 展开后，再去点击 Iframe 发现无法触发 Dropdown 的 clickOutside 事件，导致 Dropdown 无法收起。
+    link: click-outside
+    date: 2018-06-22
+    img: http://blustemy.io/content/images/2017/02/Click-Outside-Illustration.png
 ---
