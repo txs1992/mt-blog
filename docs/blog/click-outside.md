@@ -162,7 +162,7 @@ export default {
   },
 
   destoryed () {
-    ocusUnbind(this.$refs.dropdown.$el, this.$refs.dropdown.hide)
+    focusUnbind(this.$refs.dropdown.$el, this.$refs.dropdown.hide)
     focusUnbind(this.$refs.dropdownContent.$el, this.$refs.dropdown.hide)
   }
 }
@@ -260,7 +260,8 @@ Iframe 元素无法触发鼠标事件，在 Iframe 中触发 clickOutside, 更�
 
 相关链接
 
- - [MDN focusin](https://developer.mozilla.org/en-US/docs/Web/Events/focusin)
- - [focus-outside](https://github.com/txs1992/focus-outside)
- - [说说 tabindex 的那些事儿](http://bubkoo.com/2015/02/01/using-the-tabindex-attribute/)
- - [HTML tabindex 属性与 web 网页键盘无障碍访问](https://www.zhangxinxu.com/wordpress/2017/05/html-tabindex/)
+- [MDN focusin](https://developer.mozilla.org/en-US/docs/Web/Events/focusin)
+- [MDN focusout](https://developer.mozilla.org/en-US/docs/Web/Events/focusout)
+- [focus-outside](https://github.com/txs1992/focus-outside)
+- [说说 tabindex 的那些事儿](http://bubkoo.com/2015/02/01/using-the-tabindex-attribute/)
+- [HTML tabindex 属性与 web 网页键盘无障碍访问](https://www.zhangxinxu.com/wordpress/2017/05/html-tabindex/)
