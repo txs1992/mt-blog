@@ -26,7 +26,8 @@ module.exports = {
         'vuepress',
         'vue-business-component',
         'stylus-converter',
-        'click-outside'
+        'click-outside',
+        'json-server'
       ]
     }
   }
