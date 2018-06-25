@@ -5,7 +5,7 @@ items:
     description: 关于我对 git 命令的一些记录。
     link: git
     date: 2018-03-18
-    img: https://github.com/txs1992/mt-blog/blob/master/docs/images/git.png
+    img: ../public/focusout.png
   - title: 谈谈 Vue 业务组件
     description: 春节的假期刚刚过去不久，大脑还没有从假期综合症中缓过来，就迎来了开工的日子，不知道各位有没有收到开工大红包？有没有被虐狗？
     link: vue-business-component
