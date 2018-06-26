@@ -232,6 +232,7 @@ localhost:3000/provinces?_embed=cities
  
  
 // 查询所有市，以及它所包属于的省。
+localhost:3000/cities?_expand=province
 ```
 
 ### 路由与其他

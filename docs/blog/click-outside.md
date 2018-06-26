@@ -1,12 +1,14 @@
-<h1 align="center">如何优雅解决 Iframe 无法触发 clickOutside</h1>
+<h1 align="center">如何优雅解决 iframe 无法触发 clickOutside</h1>
 
 ### 前言
 
-> 在公司的一次小组分享会上，[组长](https://github.com/coolzjy) 给我们分享了一个他在项目中遇到的一个问题。在一个嵌入 Iframe 的系统中，当我们点击 Dropdown 展开后，再去点击 Iframe 发现无法触发 Dropdown 的 clickOutside 事件，导致 Dropdown 无法收起。[查看示例](https://jsfiddle.net/_MT_/wLkgu614/29/)
+> 在公司的一次小组分享会上，[组长](https://github.com/coolzjy) 给我们分享了一个他在项目中遇到的一个问题。在一个嵌入 iframe 的系统中，当我们点击 Dropdown 展开后，再去点击 iframe 发现无法触发 Dropdown 的 clickOutside 事件，导致 Dropdown 无法收起。
+
+[查看示例](https://jsfiddle.net/_MT_/wLkgu614/29/)
 
 ### 为什么无法触发 clickOutside
 
-目前大多数的 UI 组件库，例如 Element、ant-design、Iview 等都是通过鼠标事件来处理， 下面这段是 Iview 中的 clickOutside 代码，Iview 直接给 Document 绑定了 click 事件，当 click 事件触发时候，判断点击目标是否包含在绑定元素中，如果不是就调用绑定的函数。
+目前大多数的 UI 组件库，例如 Element、Ant Design、iView 等都是通过鼠标事件来处理， 下面这段是 iView 中的 clickOutside 代码，iView 直接给 Document 绑定了 click 事件，当 click 事件触发时候，判断点击目标是否包含在绑定元素中，如果不是就调用绑定的函数。
 
 ```javascript
 bind (el, binding, vnode) {
@@ -23,23 +25,23 @@ bind (el, binding, vnode) {
 }
 ```
 
-但 Iframe 中加载的是一个相对独立的 Document，如果直接在父页面中给 Document 绑定 click 事件，点击 Iframe 并不会触发该事件。
+但 iframe 中加载的是一个相对独立的 Document，如果直接在父页面中给 Document 绑定 click 事件，点击 iframe 并不会触发该事件。
 
 知道问题出现在哪里，接下来我们来思考怎么解决？
 
-#### 给 Iframe 的 body 元素绑定事件
+#### 给 iframe 的 body 元素绑定事件
 
-我们可以通过一些特殊的方式给 Iframe 绑定上事件，但这种做法不优雅，而且也是存在问题的。我们来想想一下这样一个场景，左边是一个侧边栏(导航栏)，上面是一个 Header 里面有一些 Dropdown 或是 Select 组件，下面是一个页面区域。但这些页面有的是嵌入 Iframe，有些是当前系统的页面。如果使用这种方法，我们在切换路由的时候就要不断的去判断这个页面是否包含 Iframe，然后绑定/解绑事件。但如果 Iframe 和当前系统不是同域，那么这种做法是无效的。
+我们可以通过一些特殊的方式给 iframe 绑定上事件，但这种做法不优雅，而且也是存在问题的。我们来想想一下这样一个场景，左边是一个侧边栏(导航栏)，上面是一个 Header 里面有一些 Dropdown 或是 Select 组件，下面是一个页面区域。但这些页面有的是嵌入 iframe，有些是当前系统的页面。如果使用这种方法，我们在切换路由的时候就要不断的去判断这个页面是否包含 iframe，然后绑定/解绑事件。但如果 iframe 和当前系统不是同域，那么这种做法是无效的。
 
 #### 添加遮罩层
 
-我们可以通过给 Iframe 添加一个透明遮罩层，点击 Dropdown 的时候显示透明遮罩层，点击 Dropdown 之外的区域或遮罩层，就关闭遮罩层并派发 clickOutside 事件，这样虽然可以触发 clickOutside 事件，但存在一个问题，如果用户点击的区域正好是 Iframe 页面中的某个按钮，那么第一次点击是不会生效的，这种做法对于交互不是很友好。
+我们可以通过给 iframe 添加一个透明遮罩层，点击 Dropdown 的时候显示透明遮罩层，点击 Dropdown 之外的区域或遮罩层，就关闭遮罩层并派发 clickOutside 事件，这样虽然可以触发 clickOutside 事件，但存在一个问题，如果用户点击的区域正好是 iframe 页面中的某个按钮，那么第一次点击是不会生效的，这种做法对于交互不是很友好。
 
 #### 通过 focusin 与 focusout 事件
 
 其实我们可以换一种思路，为什么一定要用鼠标事件呢？focusin 与 focusout 事件就很适合处理当前这种情况，当我们点击非绑定的元素时触发 focusout 事件，如果是就添加一个定时器，延时调用我们绑定的函数。当我们点击绑定元素例如 Dropdown 会触发 focusin 事件，这时候我们判断目标是否包含在绑定元素中，如果包含在绑定元素中就清除定时器。
 
-不过使用 focusin 与 focusout 事件需要解决一个问题，那就是要将绑定的元素变成 focusable，那么怎么将元素变成focusable 呢？通过将 tabindex 属性置为 `-1` , 该元素就变成可由代码获取焦点。需要注意的是，元素变成 focusable 后，当它获取焦点浏览器会给它加上高亮样式，如果不需要这种样式可以将 outli 设置为 none。
+不过使用 focusin 与 focusout 事件需要解决一个问题，那就是要将绑定的元素变成 focusable，那么怎么将元素变成focusable 呢？通过将 tabindex 属性置为 `-1` , 该元素就变成可由代码获取焦点。需要注意的是，元素变成 focusable 后，当它获取焦点浏览器会给它加上高亮样式，如果不需要这种样式可以将 outline 设置为 none。
 
 不过这种方法虽然很棒，但是也存在一些问题，浏览器兼容性，下面是 MDN 给出的浏览器兼容情况，Firefox 低版本不兼容。
 
@@ -101,7 +103,6 @@ focusBind(elm, callback, 'my-focus-name')
 #### 在 Vue 中使用
 
 ```javascript
-
 // outside.js
 export default {
   bind (el, binding) {
@@ -170,7 +171,7 @@ export default {
 
 [查看在线示例](https://jsfiddle.net/_MT_/1wb8nk67/57/)
 
-#### 在 ant-design 中使用
+#### 在 Ant Design 中使用
 
 ```javascript
 import { Menu, Dropdown, Icon, Button } = antd
@@ -256,7 +257,7 @@ ReactDOM.render(
 
 ### 总结
 
-Iframe 元素无法触发鼠标事件，在 Iframe 中触发 clickOutside, 更好的做法是使用 focusin 与 focusout 事件。将 tabindex 设置为 -1 可以将元素变成 focusable 元素。
+iframe 元素无法触发鼠标事件，在 iframe 中触发 clickOutside, 更好的做法是使用 focusin 与 focusout 事件。将 tabindex 设置为 -1 可以将元素变成 focusable 元素。
 
 相关链接
 
