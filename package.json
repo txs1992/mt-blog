@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/TaoXuSheng/mt-blog#readme",
   "devDependencies": {
-    "gh-pages": "^1.1.0",
-    "node-sass": "^4.9.0",
+    "gh-pages": "^2.0.1",
+    "node-sass": "^4.11.0",
     "sass-loader": "^7.0.1",
-    "vuepress": "^0.10.0"
+    "vuepress": "^0.14.8"
   },
   "dependencies": {
     "element-ui": "^2.3.6",
